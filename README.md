@@ -41,7 +41,19 @@ $$
 Para capturar las complejas interdependencias sectoriales, utilizamos modelos basados en árboles de decisión (CATBoost, Random Forest y XGBoost). Estos modelos se seleccionan por su capacidad para manejar la no linealidad y prevenir el sobreajuste, con la elección del modelo basada en el Error Absoluto Medio (MAE).
 
 #### Importancia de Características en Árboles de Decisión
-Explica cómo la eficiencia de cada sector influye en la eficiencia general, calculada evaluando la contribución de cada característica a las predicciones del modelo. La medida de error que utilizamos para evaluar el desempeño del modelo es el MAE, definido como:
+Explica cómo la eficiencia de cada sector influye en la eficiencia general, calculada evaluando la contribución de cada característica a las predicciones del modelo. ## Importancia por Variable
+La "Feature Importance" mide la contribución relativa de cada variable predictora a la eficiencia del modelo. Para un árbol de decisión, la importancia de una característica específica \(f\) se calcula sumando la reducción ponderada de impureza que \(f\) produce en todos los nodos donde se utiliza para dividir la muestra:
+
+$$
+\text{Importancia}(f) = \sum_{d \in D_f} n_d \times \Delta\text{Impureza}(d)
+$$
+
+Donde:
+- \(D_f\) es el conjunto de todos los nodos que utilizan la característica \(f\) para dividir.
+- \(n_d\) es el número de muestras en el nodo \(d\).
+- \(\Delta\text{Impureza}(d)\) es la mejora en la impureza lograda al usar la característica \(f\) para dividir el nodo \(d\).
+
+La medida de error que utilizamos para evaluar el desempeño del modelo es el MAE, definido como:
 
 $$
 MAE = \frac{1}{n} \sum_{i=1}^{n} | \hat{y_i} - y_i |
